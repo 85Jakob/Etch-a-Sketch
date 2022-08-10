@@ -1,5 +1,5 @@
 *{
-    background-color: yellow;
+    background-color: green;
     font-family: Arial, Helvetica, sans-serif;
 }
 .title{
@@ -7,8 +7,10 @@
     font-size: 50px;
     padding: 10px;
     margin-bottom: 10px;
-    
+    color: yellow;
+    text-shadow: 8px 6px rgba(0, 0, 0, 0.4);
 }
+
 button{ 
     background-color: black;
     color: yellow;
@@ -32,10 +34,12 @@ button:active{
     gap: 20px;
 }
 .colorPrompt{
+    margin-top: -20px;
     display: flex;
     height: 64px;
     flex-direction:column;
     align-items: center;
+    color: yellow;
 }
 #sText{
     margin-top: 10px;
@@ -43,16 +47,35 @@ button:active{
 }
 #color{
     width: 64px;
-    height: 30px;
+    height: 40px;
+    filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.4));
 }
 .sliderBox{
+    padding-top: 20px;
     display: flex;
     height: 64px;
     flex-direction:column;
+    color: yellow;
+}
+#sValue{
+    padding: 5px;
 }
 #slider{
     margin-bottom: 0;
 }
+#slider:hover{
+    cursor: pointer;
+}
+
+#color:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.4));
+}
+#color:active{
+    transform: scale(1);
+}
+
 #sValue{
     margin-top: 0;
     font-size: 24px;
@@ -76,7 +99,7 @@ button:active{
     width: 600px;
     height: 600px;
     display: grid;
-
+    filter: drop-shadow(0 20px 18px rgba(0, 0, 0, 0.9));
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
 }
