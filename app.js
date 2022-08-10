@@ -13,7 +13,7 @@ function makeRows(rows, cols) {
 };
 
 function changeColor(e){
-    e.target.style.backgroundColor = 'purple';
+    e.target.style.backgroundColor = 'green';
 }
 
 makeRows(16, 16);
