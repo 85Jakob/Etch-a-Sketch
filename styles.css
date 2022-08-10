@@ -8,11 +8,7 @@
     align-items: center;
     gap: 20px;
 }
-#reset{
-    height: 64px;
-    width: 64px;
-}
-#black{
+#clear{
     height: 64px;
     width: 64px;
 }
@@ -21,6 +17,10 @@
     width: 64px;
 }
 #erase{
+    height: 64px;
+    width: 64px;
+}
+#mode{
     height: 64px;
     width: 64px;
 }
@@ -73,8 +73,8 @@
 }
   
 .grid-item {
-    border: 1px solid #ddd;
     text-align: center;
+    border: 0px;
 }
 
 .grid-item:hover {

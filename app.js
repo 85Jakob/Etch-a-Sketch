@@ -1,19 +1,83 @@
+const DEFAULT_SIZE = 16;
+const DEFAULT_COLOR_MODE = "BLACK";
+const DEFAULT_DRAW_MODE = "CLICK";
+
+let colorMode = DEFAULT_COLOR_MODE;
+let drawMode = DEFAULT_DRAW_MODE;
+
 const container = document.getElementById("container");
 
-function makeRows(rows, cols) {
+const rainbowBtn = document.getElementById('rgb')
+const eraserBtn = document.getElementById('erase')
+
+rainbowBtn.onclick = () => setColorMode('rainbow')
+eraserBtn.onclick = () => setColorMode('eraser')
+
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
+
+/*
+* Makes drawing grid
+*/
+function makeGrid(rows, cols) {
   container.style.setProperty('--grid-rows', rows);
   container.style.setProperty('--grid-cols', cols);
   for (c = 0; c < (rows * cols); c++) {
     let cell = document.createElement("div");
-    cell.innerText = (c + 1);
-    //cell.addEventListener('mouseover', changeColor)
-    cell.addEventListener('mousedown', changeColor)
+    cell.addEventListener('mouseover', changeColor);
+    cell.addEventListener('mousedown', changeColor);
     container.appendChild(cell).className = "grid-item";
   };
 };
 
-function changeColor(e){
-    e.target.style.backgroundColor = 'green';
+/* 
+* Sets the color
+*/
+function setColorMode(mode){
+    colorMode = mode;
+}
+/* 
+* Sets the color
+*/
+
+
+
+/* 
+* Generates a random color and returns it
+*/
+function getRandomColor(){
+    let color = '#';
+    let colorChar = '0123456789ABCDEF';
+    for (var i = 0; i < 6; i++) {
+        color += colorChar[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
 
-makeRows(16, 16);
+/*
+* updates the color of the square when clicked
+*/
+function changeColor(e){
+    if(e.type === 'mouseover' && !mouseDown){
+        //pass
+    }    
+    else {
+        if(colorMode === 'eraser'){
+            e.target.style.backgroundColor = 'white';
+        }
+        else if(colorMode === 'rainbow'){
+            e.target.style.backgroundColor = getRandomColor();
+        } else {
+            e.target.style.backgroundColor = 'black';
+        }
+    }
+}
+
+/*
+* sets up default board
+*/
+window.onload = () =>{
+    makeGrid(DEFAULT_SIZE, DEFAULT_SIZE);
+    setColorMode(DEFAULT_COLOR_MODE);
+}
