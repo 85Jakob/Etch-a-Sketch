@@ -119,6 +119,6 @@ button:active{
     user-select: none;
 }
 
-.grid-item:hover {
+#container:hover {
     cursor: pointer;
 }
