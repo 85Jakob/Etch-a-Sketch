@@ -1,8 +1,16 @@
 *{
     border: solid 1px red;
+    background-color: yellow;
+}
+.title{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    padding: 10px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 1));
 }
 .btns{
-    margin-top: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,16 +74,19 @@
 }
 
 #container {
+    background-color: white;
     width: 600px;
     height: 600px;
     display: grid;
+
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
 }
   
 .grid-item {
+    background-color: white;
+    border: 1px solid lightblue;
     text-align: center;
-    border: 0px;
     user-select: none;
 }
 

@@ -65,11 +65,15 @@ function changeColor(e){
     else {
         if(colorMode === 'eraser'){
             e.target.style.backgroundColor = 'white';
+            e.target.style.borderColor = 'lightblue';
         }
         else if(colorMode === 'rainbow'){
-            e.target.style.backgroundColor = getRandomColor();
+            let newColor = getRandomColor();
+            e.target.style.backgroundColor = newColor;
+            e.target.style.borderColor = newColor;
         } else {
             e.target.style.backgroundColor = 'black';
+            e.target.style.borderColor = 'black';
         }
     }
 }
