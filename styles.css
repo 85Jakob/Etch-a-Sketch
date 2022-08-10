@@ -2,6 +2,12 @@
     background-color: green;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+:root {
+    --grid-cols: 1;
+    --grid-rows: 1;
+}
+
 .title{
     text-align: center;
     font-size: 50px;
@@ -27,12 +33,14 @@ button:hover{
 button:active{
     transform: scale(1);
 }
+
 .btns{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
+
 .colorPrompt{
     margin-top: -20px;
     display: flex;
@@ -41,15 +49,18 @@ button:active{
     align-items: center;
     color: yellow;
 }
+
 #sText{
     margin-top: 10px;
     margin-bottom: 0px;
 }
+
 #color{
     width: 64px;
     height: 40px;
     filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.4));
 }
+
 .sliderBox{
     padding-top: 20px;
     display: flex;
@@ -57,12 +68,11 @@ button:active{
     flex-direction:column;
     color: yellow;
 }
-#sValue{
-    padding: 5px;
-}
+
 #slider{
     margin-bottom: 0;
 }
+
 #slider:hover{
     cursor: pointer;
 }
@@ -72,20 +82,18 @@ button:active{
     cursor: pointer;
     filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.4));
 }
+
 #color:active{
     transform: scale(1);
 }
 
 #sValue{
+    padding: 5px;
     margin-top: 0;
     font-size: 24px;
     text-align: center;
 }
 
-:root {
-    --grid-cols: 1;
-    --grid-rows: 1;
-}
 .drawArea{
     padding: 1em;
     display: flex;

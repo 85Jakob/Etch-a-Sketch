@@ -6,15 +6,15 @@ let colorMode = DEFAULT_COLOR_MODE;
 let currentColor = DEFAULT_COLOR;
 let size = DEFAULT_SIZE
 
-
+/* HTML ELEMENTS */
 const container = document.getElementById("container");
-
 const rainbowBtn = document.getElementById('rgb');
 const eraserBtn = document.getElementById('erase');
 const clearBtn = document.getElementById('clear');
 const colorPicker = document.getElementById('color');
 const solidBtn = document.getElementById('solid');
 
+/* input listeners */
 rainbowBtn.onclick = () => setColorMode('rainbow');
 eraserBtn.onclick = () => setColorMode('eraser');
 solidBtn.onclick = () => setColorMode('solid');
@@ -25,9 +25,9 @@ let mouseDown = false;
 document.querySelector('.drawArea').onmousedown = () => (mouseDown = true);
 document.querySelector('.drawArea').onmouseup = () => (mouseDown = false);
 
-/*
-* updates grid layout
-*/
+/**************************************
+* updates grid layout based on slider input
+**************************************/
 let slider = document.getElementById('slider');
 let output = document.getElementById('sValue');
 output.innerHTML = slider.value;
@@ -36,7 +36,6 @@ output.innerHTML = slider.value;
     clear();
 });*/
 output.innerHTML = size;
-
 slider.addEventListener('input',function() {
     output.innerHTML = slider.value;
     size = slider.value;
@@ -44,10 +43,9 @@ slider.addEventListener('input',function() {
 },false);
 output.innerHTML = size;
 
-
-/*
+/**************************************
 * Makes drawing grid
-*/
+**************************************/
 function makeGrid(rows, cols) {
     container.style.setProperty('--grid-rows', rows);
     container.style.setProperty('--grid-cols', cols);
@@ -58,30 +56,31 @@ function makeGrid(rows, cols) {
         container.appendChild(cell).className = "grid-item";
     };
 };
-/*
+
+/**************************************
 * Resets board
-*/
+**************************************/
 function clear(){
     container.innerHTML = " ";
     makeGrid(size, size);
 }
 
-/* 
+/**************************************
 * Sets the color Mode
-*/
+**************************************/
 function setColorMode(mode){
     colorMode = mode;
 }
-/* 
+/**************************************
 * Sets the color 
-*/
+**************************************/
 function setColor(color){
     currentColor = color;
 }
 
-/* 
+/**************************************
 * Generates a random color and returns it
-*/
+**************************************/
 function getRandomColor(){
     let color = '#';
     let colorChar = '0123456789ABCDEF';
@@ -91,9 +90,9 @@ function getRandomColor(){
     return color;
 }
 
-/*
+/********************************************
 * updates the color of the square when clicked
-*/
+*********************************************/
 function changeColor(e){
     if(e.type === 'mouseover' && !mouseDown){
         //pass
@@ -114,9 +113,9 @@ function changeColor(e){
     }
 }
 
-/*
+/**********************
 * sets up default board
-*/
+***********************/
 window.onload = () =>{
     makeGrid(DEFAULT_SIZE, DEFAULT_SIZE);
     setColorMode(DEFAULT_COLOR_MODE);
