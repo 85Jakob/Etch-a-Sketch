@@ -14,45 +14,56 @@ const eraserBtn = document.getElementById('erase');
 const clearBtn = document.getElementById('clear');
 const colorPicker = document.getElementById('color');
 const solidBtn = document.getElementById('solid');
-const sizeValue = document.getElementById('value');
-const sizeSlider = document.getElementById('slider');
 
 rainbowBtn.onclick = () => setColorMode('rainbow');
 eraserBtn.onclick = () => setColorMode('eraser');
 solidBtn.onclick = () => setColorMode('solid');
 clearBtn.onclick = () => clear();
 colorPicker.oninput = (e) => setColor(e.target.value);
-sizeSlider.oninput = (e) => changeSize(e.target.value);
-sizeSlider.onchange = (e) => changeSize(e.target.value);
 
 let mouseDown = false;
-document.body.onmousedown = () => (mouseDown = true);
-document.body.onmouseup = () => (mouseDown = false);
+document.querySelector('.drawArea').onmousedown = () => (mouseDown = true);
+document.querySelector('.drawArea').onmouseup = () => (mouseDown = false);
+
+/*
+* updates grid layout
+*/
+let slider = document.getElementById('slider');
+let output = document.getElementById('sValue');
+output.innerHTML = slider.value;
+/*slider.addEventListener('click',function() {
+    size = slider.value;
+    clear();
+});*/
+output.innerHTML = size;
+
+slider.addEventListener('input',function() {
+    output.innerHTML = slider.value;
+    size = slider.value;
+    clear();
+},false);
+output.innerHTML = size;
+
 
 /*
 * Makes drawing grid
 */
 function makeGrid(rows, cols) {
-  container.style.setProperty('--grid-rows', rows);
-  container.style.setProperty('--grid-cols', cols);
-  for (c = 0; c < (rows * cols); c++) {
-    let cell = document.createElement("div");
-    cell.addEventListener('mouseover', changeColor);
-    cell.addEventListener('mousedown', changeColor);
-    container.appendChild(cell).className = "grid-item";
-  };
+    container.style.setProperty('--grid-rows', rows);
+    container.style.setProperty('--grid-cols', cols);
+    for (c = 0; c < (rows * cols); c++) {
+        let cell = document.createElement("div");
+        cell.addEventListener('mouseover', changeColor);
+        cell.addEventListener('mousedown', changeColor);
+        container.appendChild(cell).className = "grid-item";
+    };
 };
-
+/*
+* Resets board
+*/
 function clear(){
     container.innerHTML = " ";
     makeGrid(size, size);
-}
-
-function changeSize(value) {
-    size = value;
-    sizeValue.innerHTML = size;
-    document.getElementById('slider').value = size;
-    clear();
 }
 
 /* 
