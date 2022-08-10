@@ -1,21 +1,33 @@
 const DEFAULT_SIZE = 16;
-const DEFAULT_COLOR_MODE = "BLACK";
-const DEFAULT_DRAW_MODE = "CLICK";
+const DEFAULT_COLOR_MODE = "solid";
+const DEFAULT_COLOR = "BLACK";
 
 let colorMode = DEFAULT_COLOR_MODE;
-let drawMode = DEFAULT_DRAW_MODE;
+let currentColor = DEFAULT_COLOR;
+let size = DEFAULT_SIZE
+
 
 const container = document.getElementById("container");
 
-const rainbowBtn = document.getElementById('rgb')
-const eraserBtn = document.getElementById('erase')
+const rainbowBtn = document.getElementById('rgb');
+const eraserBtn = document.getElementById('erase');
+const clearBtn = document.getElementById('clear');
+const colorPicker = document.getElementById('color');
+const solidBtn = document.getElementById('solid');
+const sizeValue = document.getElementById('value');
+const sizeSlider = document.getElementById('slider');
 
-rainbowBtn.onclick = () => setColorMode('rainbow')
-eraserBtn.onclick = () => setColorMode('eraser')
+rainbowBtn.onclick = () => setColorMode('rainbow');
+eraserBtn.onclick = () => setColorMode('eraser');
+solidBtn.onclick = () => setColorMode('solid');
+clearBtn.onclick = () => clear();
+colorPicker.oninput = (e) => setColor(e.target.value);
+sizeSlider.oninput = (e) => changeSize(e.target.value);
+sizeSlider.onchange = (e) => changeSize(e.target.value);
 
-let mouseDown = false
-document.body.onmousedown = () => (mouseDown = true)
-document.body.onmouseup = () => (mouseDown = false)
+let mouseDown = false;
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
 
 /*
 * Makes drawing grid
@@ -31,17 +43,30 @@ function makeGrid(rows, cols) {
   };
 };
 
+function clear(){
+    container.innerHTML = " ";
+    makeGrid(size, size);
+}
+
+function changeSize(value) {
+    size = value;
+    sizeValue.innerHTML = size;
+    document.getElementById('slider').value = size;
+    clear();
+}
+
 /* 
-* Sets the color
+* Sets the color Mode
 */
 function setColorMode(mode){
     colorMode = mode;
 }
 /* 
-* Sets the color
+* Sets the color 
 */
-
-
+function setColor(color){
+    currentColor = color;
+}
 
 /* 
 * Generates a random color and returns it
@@ -72,8 +97,8 @@ function changeColor(e){
             e.target.style.backgroundColor = newColor;
             e.target.style.borderColor = newColor;
         } else {
-            e.target.style.backgroundColor = 'black';
-            e.target.style.borderColor = 'black';
+            e.target.style.backgroundColor = currentColor;
+            e.target.style.borderColor = currentColor;
         }
     }
 }
