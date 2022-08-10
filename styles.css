@@ -59,6 +59,7 @@
     --grid-rows: 1;
 }
 .drawArea{
+    padding: 1em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,6 +76,7 @@
 .grid-item {
     text-align: center;
     border: 0px;
+    user-select: none;
 }
 
 .grid-item:hover {
